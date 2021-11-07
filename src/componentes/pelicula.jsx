@@ -1,7 +1,7 @@
 function Pelicula(props) {
   const test = (
     <div className="movie-item-style-2">
-    <img src="images/uploads/mv1.jpg" alt="" />
+    <img src={props.image} alt="" />
     <div className="mv-item-infor">
       <h6>
         <a href="moviesingle.html">
@@ -23,11 +23,10 @@ function Pelicula(props) {
         <span>Release: 1 May 2015</span>
       </p>
       <p>
-        Director: <a href="#">Joss Whedon</a>
+        Director: <a href="#">{props.director}</a>
       </p>
       <p>
-        Stars: <a href="#">Robert Downey Jr.,</a> <a href="#">Chris Evans,</a>{" "}
-        <a href="#"> Chris Hemsworth</a>
+        Stars: {props.actores}
       </p>
     </div>
   </div>
