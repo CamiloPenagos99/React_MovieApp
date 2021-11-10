@@ -1,30 +1,19 @@
 import logo from './logo.svg';
 import './App.css';
-import Pelicula from './componentes/pelicula';
+import Pelicula from './componentes/Pelicula';
 import PageWrapper from './componentes/PageWrapper';
+import movies from './data/movies.json'
+import Paginacion from './componentes/Paginacion';
+import { useState } from 'react';
 
 function App() {
 
-	let peliculas = [
-    {
-      name: "Oblivion 1",
-      image: "images/uploads/mv1.jpg",
-      actores: "Camilo Penagos1",
-      director: "Franco Wallos",
-    },
-    {
-      name: "Oblivion 2",
-      image: "images/uploads/mv1.jpg",
-      actores: "Camilo Penagos1",
-      director: "Franco Wallos",
-    },
-    {
-      name: "Oblivion 3",
-      image: "images/uploads/mv1.jpg",
-      actores: "Camilo Penagos1",
-      director: "Franco Wallos",
-    },
-  ];
+	const [paginaActual, setPaginaActual] = useState(1)
+	const [peliculas, setPeliculas] = useState(movies)
+
+	const cambiarPaginacion = (movies, actual) =>{
+		movies = movies.slice((actual -1) * 5, actual*5)
+	}
  
   const recorrer = ()=>{
 	peliculas.map(peli=> {
@@ -35,18 +24,34 @@ function App() {
 
   const bodyMovies = (
     <PageWrapper>
-		{
-			peliculas.map(peli=> {
-				return	<Pelicula name={peli.titulo} image={peli.image} actores={peli.actores} director={peli.director}/>
-			})
-		}	
-	</PageWrapper>
-  )
+      {peliculas.map((peli) => {
+        return (
+          <Pelicula
+            name={peli.titulo}
+            image={peli.img}
+            actores={peli.actores}
+            director={peli.director}
+          >
+            {peli.descripcion}
+          </Pelicula>
+        );
+      })}
+
+      <Paginacion
+        pagina={paginaActual}
+        total={4}
+        onChange={(pagina) => {
+			setPaginaActual(pagina)
+        }}
+      ></Paginacion>
+    </PageWrapper>
+  );
 
   return (
     <div>
       {bodyMovies}
     </div>
+	
   );
 }
 
