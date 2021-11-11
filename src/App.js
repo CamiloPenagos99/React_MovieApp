@@ -9,12 +9,18 @@ import { useState } from 'react';
 function App() {
 
 	const [paginaActual, setPaginaActual] = useState(1)
-	const [peliculas, setPeliculas] = useState(movies)
+	//const [peliculas, setPeliculas] = useState(movies)
+  let peliculas = movies
 
-	const cambiarPaginacion = (movies, actual) =>{
-		movies = movies.slice((actual -1) * 5, actual*5)
-	}
- 
+  const totalPaginas = () =>{
+    let total = movies.length
+    let div = 4
+    return Math.ceil(total/div)
+  }
+	
+  peliculas = peliculas.slice((paginaActual -1) * 4, paginaActual*4)
+	
+  totalPaginas()
   const recorrer = ()=>{
 	peliculas.map(peli=> {
 		return	<Pelicula name={peli.titulo} image={peli.image} actores={peli.actores} director={peli.director}/>
@@ -39,9 +45,9 @@ function App() {
 
       <Paginacion
         pagina={paginaActual}
-        total={4}
+        total={totalPaginas()}
         onChange={(pagina) => {
-			setPaginaActual(pagina)
+			  setPaginaActual(pagina)
         }}
       ></Paginacion>
     </PageWrapper>
