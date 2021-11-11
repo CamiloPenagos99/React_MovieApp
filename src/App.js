@@ -6,12 +6,14 @@ import { useEffect, useState } from 'react';
 
 function App() {
 
+  console.log('render ...')
 	const [paginaActual, setPaginaActual] = useState(1)
 	const [peliculas, setPeliculas] = useState([])
 
   let movieitems = []
 
   useEffect(()=>{
+    console.log('fetch')
     fetchMovies()
   },[])
 
@@ -19,11 +21,13 @@ function App() {
     const res = await fetch(`http://www.omdbapi.com/?apikey=30f1a8e&s=action`)
     const data= await res.json()
     let arrayMovies = data.Search
-    console.log('data movies is...', arrayMovies)
+    console.log('data fetch movies es', arrayMovies)
     setPeliculas(arrayMovies);
    }
 
-   if(peliculas.length==0) return (<div>data loading...</div>)
+   console.log('data movies is...', peliculas)
+
+   //if(peliculas.length==0) return (<div>data loading...</div>)
 
   const totalPaginas = () =>{
     let total = peliculas.length
@@ -43,7 +47,7 @@ function App() {
           <Pelicula
             name={peli.Title}
             image={peli.Poster}
-            year={peli.actores}
+            year={peli.Year}
             id={peli.imdbID}
           />
         

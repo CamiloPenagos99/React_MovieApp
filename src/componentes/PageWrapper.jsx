@@ -212,7 +212,7 @@ const PageWrapper = (props) =>{
                 <div className="row ipad-width2">
                     <div className="col-md-8 col-sm-12 col-xs-12">
                         <div className="topbar-filter">
-                            <p>Found <span>1,608 movies</span> in total</p>
+                            <p>Found <span>10 movies</span> in total</p>
                             <label>Sort by:</label>
                             <select>
                                 <option value="popularity">Popularity Descending</option>
