@@ -1,45 +1,52 @@
-import logo from './logo.svg';
 import './App.css';
 import Pelicula from './componentes/Pelicula';
 import PageWrapper from './componentes/PageWrapper';
-import movies from './data/movies.json'
 import Paginacion from './componentes/Paginacion';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 function App() {
 
 	const [paginaActual, setPaginaActual] = useState(1)
-	//const [peliculas, setPeliculas] = useState(movies)
-  let peliculas = movies
+	const [peliculas, setPeliculas] = useState([])
+
+  let movieitems = []
+
+  useEffect(()=>{
+    fetchMovies()
+  },[])
+
+   const fetchMovies = async()=>{
+    const res = await fetch(`http://www.omdbapi.com/?apikey=30f1a8e&s=action`)
+    const data= await res.json()
+    let arrayMovies = data.Search
+    console.log('data movies is...', arrayMovies)
+    setPeliculas(arrayMovies);
+   }
+
+   if(peliculas.length==0) return (<div>data loading...</div>)
 
   const totalPaginas = () =>{
-    let total = movies.length
+    let total = peliculas.length
     let div = 4
     return Math.ceil(total/div)
   }
 	
-  peliculas = peliculas.slice((paginaActual -1) * 4, paginaActual*4)
+  movieitems = peliculas.slice((paginaActual -1) * 4, paginaActual*4)
 	
   totalPaginas()
-  const recorrer = ()=>{
-	peliculas.map(peli=> {
-		return	<Pelicula name={peli.titulo} image={peli.image} actores={peli.actores} director={peli.director}/>
-	})
-	
-  	}
+
 
   const bodyMovies = (
     <PageWrapper>
-      {peliculas.map((peli) => {
+      {movieitems.map((peli) => {
         return (
           <Pelicula
-            name={peli.titulo}
-            image={peli.img}
-            actores={peli.actores}
-            director={peli.director}
-          >
-            {peli.descripcion}
-          </Pelicula>
+            name={peli.Title}
+            image={peli.Poster}
+            year={peli.actores}
+            id={peli.imdbID}
+          />
+        
         );
       })}
 

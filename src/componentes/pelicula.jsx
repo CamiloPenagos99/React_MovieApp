@@ -5,7 +5,7 @@ function Pelicula(props) {
     <div className="mv-item-infor">
       <h6>
         <a href="moviesingle.html">
-          {props.name} <span>(2012)</span>
+          {props.name} <span>{props.year}</span>
         </a>
       </h6>
       <p className="rate">
@@ -13,18 +13,18 @@ function Pelicula(props) {
         <span>8.1</span> /10
       </p>
       <p className="describe">
-        {props.children}
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Expedita assumenda aliquam modi officia aut eos! Dolores enim commodi quae voluptatibus.
       </p>
       <p className="run-time">
         {" "}
-        Run Time: 2h21’ . <span>MMPA: PG-13 </span> .{" "}
-        <span>Release: 1 May 2015</span>
+        Run Time: 2h21’ . <span>{props.id} </span> .{" "}
+        <span>Release: {props.year}</span>
       </p>
       <p>
-        Director: <a href="#">{props.director}</a>
+        Director: <a href="#">Lorem.</a>
       </p>
       <p>
-        Stars: {props.actores}
+        Stars: Lorem, ipsum dolor.
       </p>
     </div>
   </div>
