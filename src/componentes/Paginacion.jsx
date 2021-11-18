@@ -9,7 +9,7 @@ const Paginacion = (props) =>{
       for (let index = 1; index <= props.total; index++) {
         const indicador = (
           <a className={props.pagina===index ? 'active': ''}  onClick={()=>{
-            return props.onChange(index)
+             props.onChange(index)
          }}>
             {index}
           </a>
