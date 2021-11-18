@@ -11,6 +11,15 @@ import {
 function App() {
   return (
     <Router>
+       <ul>
+          <li>
+            <Link to="/">Movies</Link>
+          </li>
+          <li>
+            <Link to="/blog">Blog</Link>
+          </li>
+        </ul>
+  
       <Routes>
         <Route path="/" element={<ListadoPeliculas />}></Route>
         <Route path="/movies" element={<ListadoPeliculas />}></Route>
